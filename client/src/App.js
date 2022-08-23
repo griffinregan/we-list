@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
 
 const [listings, setListings] = useState([])
 
 useEffect(() => {
-  fetch("https://localhost:")
+  fetch("https://localhost:3000")
   .then (res => res.json())
   .then (data => setListings(data))
 }, [])
@@ -26,16 +26,16 @@ const displayedListings = listings.filter(listing => listing.description.toLower
 
   return (
     <div className="App">
-  <Switch>
-    <Route exact path="/">
+  <Routes>
+    <Route exact path="/listings">
       <Home/>
     </Route>
     <Route>
-      <Header />
-      <Switch>
+      <Header searchItems={searchItems} searchInput={searchInput}/>
+      <Routes>
         <Route exact path="/listings">
           <Search />
-          <ShowsContainer/>
+          <ListingsContainer listings={displayedListings} deleteById={deleteById}/>
         </Route>
         <Route exact path="/listings/new">
           <ListingsForm />
@@ -43,9 +43,9 @@ const displayedListings = listings.filter(listing => listing.description.toLower
         <Route exact path="/listings/:id">
           <ListingDetails />
         </Route>
-      </Switch>
+      </Routes>
     </Route>
-  </Switch>
+  </Routes>
 
       
       
