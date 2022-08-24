@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
 
-function Header({searchItems, searchInput}) {
+function Header({searchItems, searchInput, setShow, size}) {
     return(
       <header className="headerbackground">
         <Search searchItems={searchItems} searchInput={searchInput}/>
@@ -19,6 +19,15 @@ function Header({searchItems, searchInput}) {
             <NavLink exact className="button" to="/login">
               User Login
             </NavLink>
+        <span className="my_shop" onClick={() => setShow(true)}>
+          WeList
+        </span>
+        <div className="cart" onClick={() => setShow(false)}>
+          <span>
+            <i className="cart-icon"></i>
+          </span>
+          <span>{size}</span>
+      </div>
           </div>
         </nav>
       </header>

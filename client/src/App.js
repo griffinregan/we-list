@@ -7,6 +7,13 @@ function App() {
 
 const [listings, setListings] = useState([])
 const [searchInput, setSearchInput] = useState("")
+const [cart, setCart] = useState([]);
+
+const handleClick = (item) => {
+  if (cart.indexOf(item) !== -1) return;
+  setCart([...cart, item]);
+};
+
 
 useEffect(() => {
   fetch("https://localhost:3000")
@@ -23,6 +30,15 @@ function searchItems(type) {
   setSearchInput(type)
 }
 
+const handleChange = (item, d) => {
+  const ind = cart.indexOf(item);
+  const arr = cart;
+  arr[ind].amount += d;
+
+  if (arr[ind].amount === 0) arr[ind].amount = 1;
+  setCart([...arr]);
+};
+
 const displayedListings = listings.filter(listing => listing.description.toLowerCase().includes(searchInput.toLowerCase()))
 
   return (
@@ -32,7 +48,8 @@ const displayedListings = listings.filter(listing => listing.description.toLower
       <Home/>
     </Route>
     <Route>
-      <Header searchItems={searchItems} searchInput={searchInput}/>
+      <Header searchItems={searchItems} searchInput={searchInput} setShow={setShow} size={cart.length} />
+      <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
       <Routes>
         <Route exact path="/listings">
           <Search />
@@ -47,28 +64,6 @@ const displayedListings = listings.filter(listing => listing.description.toLower
       </Routes>
     </Route>
   </Routes>
-
-      
-      
-      
-      
-      
-      
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
   );
 }
 
