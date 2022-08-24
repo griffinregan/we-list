@@ -1,9 +1,10 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
 
-function Header() {
+function Header({searchItems, searchInput}) {
     return(
       <header className="headerbackground">
+        <Search searchItems={searchItems} searchInput={searchInput}/>
         <nav>
           <div className="navbar">
             <NavLink exact className="button" to="/">
