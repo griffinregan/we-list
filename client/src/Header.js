@@ -3,8 +3,7 @@ import {NavLink} from 'react-router-dom'
 
 function Header({searchItems, searchInput, setShow, size}) {
     return(
-      <header className="headerbackground">
-        <Search searchItems={searchItems} searchInput={searchInput}/>
+      <header className="headerbackground"> 
         <nav>
           <div className="navbar">
             <NavLink exact className="button" to="/">

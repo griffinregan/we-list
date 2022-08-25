@@ -6,7 +6,7 @@ function Login({ setCurrentEmail }) {
       password: "",
     });
   
-    const [error, setErrors] = useState([]);
+    const [setErrors] = useState([]);
   
     const handleChange = (e) => {
       setFormData({
@@ -37,6 +37,7 @@ function Login({ setCurrentEmail }) {
         }
       });
     };
+
 
     return (
         <div>id="login"

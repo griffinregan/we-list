@@ -1,7 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
+import Cart from "./Cart";
+import Header from "./Header";
+import Search from "./Search";
+import ListingsContainer from "./ListingContainer"
+import PageLogin from './PageLogin';
+import ListingsForm from './ListingsForm';
+import ListingDetails from './ListingDetails';
+
 
 function App() {
 
@@ -44,12 +52,12 @@ const displayedListings = listings.filter(listing => listing.description.toLower
   return (
     <div className="App">
   <Routes>
-    <Route exact path="/listings">
-      <Home/>
+    <Route exact path="/">
+      <PageLogin/>
     </Route>
     <Route>
-      <Header searchItems={searchItems} searchInput={searchInput} setShow={setShow} size={cart.length} />
-      <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+      <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} />
+      <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
       <Routes>
         <Route exact path="/listings">
           <Search />
@@ -64,6 +72,7 @@ const displayedListings = listings.filter(listing => listing.description.toLower
       </Routes>
     </Route>
   </Routes>
+  </div>
   );
 }
 

@@ -2,6 +2,9 @@ import React from "react";
 import ListingCard from "./ListingCard";
 
 function ListingsContainer({listings, deleteById}) {
+
+
+    
   return (
     <main>
       <ul className="cards">
@@ -9,6 +12,7 @@ function ListingsContainer({listings, deleteById}) {
         {listings.map((item) => (
           <ListingCard key = {item.id} item = {item} deleteById={deleteById}/>
         ))}
+        
       </ul>
     </main>
   );
