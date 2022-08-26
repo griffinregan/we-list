@@ -8,7 +8,7 @@ function PageLogin({ setCurrentEmail }) {
 
     return (
         <div id="login-cont">
-            <LoginHeader />
+            {/* <LoginHeader />
             {showLogin ? (
                 <>
                 <Login setCurrentEmail={setCurrentEmail} />
@@ -30,7 +30,7 @@ function PageLogin({ setCurrentEmail }) {
                 </p>
                 </>
              ) 
-            }
+            } */}
         </div>
     )
 }

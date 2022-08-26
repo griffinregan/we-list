@@ -52,10 +52,8 @@ const displayedListings = listings.filter(listing => listing.description.toLower
   return (
     <div className="App">
   <Routes>
-    <Route exact path="/">
-      <PageLogin/>
-    </Route>
-    <Route>
+  <Route exact path="/" element={<PageLogin/>} />
+    {/* <Route>
       <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} />
       <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
       <Routes>
@@ -70,7 +68,7 @@ const displayedListings = listings.filter(listing => listing.description.toLower
           <ListingDetails />
         </Route>
       </Routes>
-    </Route>
+    </Route> */}
   </Routes>
   </div>
   );
