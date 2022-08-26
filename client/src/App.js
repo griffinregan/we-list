@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Cart from "./Cart";
 import Header from "./Header";
@@ -50,34 +50,30 @@ const handleChange = (item, d) => {
 const displayedListings = listings.filter(listing => listing.description.toLowerCase().includes(searchInput.toLowerCase()))
 
   return (
-    <div className="App">
-      {/* <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} /> */}
-      <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
-  {/* <Routes>
-  <Route exact path="/" element={<PageLogin/>} />
-     <Route>
-      <Routes>
-        <Route exact path="/listings">
-          <Search />
-          <ListingsContainer listings={displayedListings} deleteById={deleteById}/>
-        </Route>
-        <Route exact path="/listings/new">
-          <ListingsForm />
-        </Route>
-        <Route exact path="/listings/:id">
-          <ListingDetails />
-        </Route>
-      </Routes>
-    </Route> 
-  </Routes> */}
+<Router>
 
-  <Routes>
-      <Route exact path="/" element={<PageLogin/>}/>
-      <Route exact path="/listings" element={<ListingsContainer/>} />
-      <Route exact path="/new" element={<ListingsForm/>} />
-      <Route exact path="/cart" element={<Cart/>} />
-  </Routes>
+    <div className="App">
+      <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} />
+
+  <Switch>
+    <Route exact path="/">
+        <PageLogin />
+    </Route>
+    <Route exact path="/listings">
+        <Search />
+        <ListingsContainer listings={displayedListings} deleteById={deleteById}/>
+    </Route>
+    <Route exact path="/new">
+        <ListingsForm setListings={setListings} />
+    </Route>
+    <Route exact path="/cart">
+          <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
+    </Route>
+  </Switch>
+
   </div>
+</Router>
+
   );
 }
 
