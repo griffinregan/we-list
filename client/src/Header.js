@@ -6,7 +6,7 @@ function Header({searchItems, searchInput, setShow, size}) {
       <header className="headerbackground"> 
         <nav>
           <div className="navbar">
-            <NavLink exact className="button" to="/">
+            <NavLink exact className="button" to="/login">
               Home
             </NavLink>
             <NavLink exact className="button" to="/listings">
@@ -15,7 +15,7 @@ function Header({searchItems, searchInput, setShow, size}) {
             <NavLink exact className="button" to="/listings/new">
               Sell
             </NavLink>
-            <NavLink exact className="button" to="/login">
+            <NavLink exact className="button" to="/">
               User Login
             </NavLink>
         <span className="my_shop" onClick={() => setShow(true)}>

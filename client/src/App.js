@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Cart from "./Cart";
 import Header from "./Header";
@@ -68,6 +68,9 @@ const displayedListings = listings.filter(listing => listing.description.toLower
     </Route>
     <Route exact path="/cart">
           <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
+    </Route>
+    <Route exact path="/listings/:id">
+          <ListingDetails/>
     </Route>
   </Switch>
 
