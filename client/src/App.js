@@ -24,7 +24,7 @@ const handleClick = (item) => {
 
 
 useEffect(() => {
-  fetch("https://localhost:3000")
+  fetch("https://localhost:3000/items")
   .then (res => res.json())
   .then (data => setListings(data))
 }, [])
@@ -51,11 +51,11 @@ const displayedListings = listings.filter(listing => listing.description.toLower
 
   return (
     <div className="App">
-  <Routes>
-  <Route exact path="/" element={<PageLogin/>} />
-    {/* <Route>
-      <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} />
+      {/* <Header searchItems={searchItems} searchInput={searchInput} setListings={setListings} size={cart.length} /> */}
       <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
+  {/* <Routes>
+  <Route exact path="/" element={<PageLogin/>} />
+     <Route>
       <Routes>
         <Route exact path="/listings">
           <Search />
@@ -68,7 +68,14 @@ const displayedListings = listings.filter(listing => listing.description.toLower
           <ListingDetails />
         </Route>
       </Routes>
-    </Route> */}
+    </Route> 
+  </Routes> */}
+
+  <Routes>
+      <Route exact path="/" element={<PageLogin/>}/>
+      <Route exact path="/listings" element={<ListingsContainer/>} />
+      <Route exact path="/new" element={<ListingsForm/>} />
+      <Route exact path="/cart" element={<Cart/>} />
   </Routes>
   </div>
   );
