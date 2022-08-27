@@ -8,9 +8,8 @@ import ListingsContainer from "./ListingContainer"
 import ListingsForm from './ListingsForm';
 import ListingDetails from './ListingDetails';
 
-const MainPage = ({ currentUser, setCurrentUser, listings, setListings }) => {
+const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchInput, setSearchInput }) => {
 
-  const [searchInput, setSearchInput] = useState("")
   const [cart, setCart] = useState([]);
 
   const handleClick = (item) => {

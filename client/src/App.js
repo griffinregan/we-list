@@ -68,6 +68,8 @@ function App() {
                 setCurrentUser={setCurrentUser} 
                 setListings={setListings} 
                 listings={listings}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
               /> 
               : 
               <PageLogin 
