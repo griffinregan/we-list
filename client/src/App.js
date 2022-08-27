@@ -13,34 +13,42 @@ import ListingDetails from './ListingDetails';
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [errors, setErrors] = useState(null)
+  const [listings, setListings] = useState([])
+  const [searchInput, setSearchInput] = useState("")
+  const [cart, setCart] = useState([]);
 
   // on component mount, loads user from stored session if there is one
   useEffect(() => {
     fetch("/me")
       .then (res => {
         if(res.ok) {
-        res.json().then(user => setCurrentUser(user))
+        res.json().then(user => setCurrentUser(user)).then(fetchListings())
         } else {
           setErrors(res)
         }
       })
   }, [])
 
+  const fetchListings = () => {
+    fetch("/items")
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data)
+        setListings(data)})
+  }
 
-  const [listings, setListings] = useState([])
-  const [searchInput, setSearchInput] = useState("")
-  const [cart, setCart] = useState([]);
 
   const handleClick = (item) => {
     if (cart.indexOf(item) !== -1) return;
+    console.log('adding item:', item)
     setCart([...cart, item]);
   };
 
 
-  function deleteById(id) {
-  const filteredListings = listings.filter(listing => listing.id !== id)
-  setListings(filteredListings)
-  }
+  // function deleteById(id) {
+  // const filteredListings = listings.filter(listing => listing.id !== id)
+  // setListings(filteredListings)
+  // }
 
   function searchItems(type) {
   setSearchInput(type)
@@ -75,6 +83,8 @@ function App() {
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
                 searchItems={searchItems}
+                handleClick={handleClick}
+
               /> 
               : 
               <PageLogin 

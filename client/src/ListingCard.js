@@ -1,6 +1,6 @@
 import React from "react";
 
-function ListingCard({item, deleteById}) {
+function ListingCard({item, deleteById, handleClick}) {
 
 
 function handleDelete(id) {
@@ -19,8 +19,8 @@ function handleDelete(id) {
       <div className="details">
     
         <strong>{item.description}</strong>
-        <span> · {item.location}</span>
-        <button onClick={() => handleDelete(item.id)} className="emoji-button delete">🗑</button>
+        <span>{item.location}</span>
+        <button onClick={() => handleClick(item)} className="emoji-button cart">Add to 🛒</button>
       </div>
     </li>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import ListingCard from "./ListingCard";
 
-function ListingsContainer({listings, deleteById}) {
+function ListingsContainer({listings, deleteById, handleClick}) {
 
 
     
@@ -10,7 +10,7 @@ function ListingsContainer({listings, deleteById}) {
       <ul className="cards">
         {/* use the ListingCard component to display listings */}
         {listings.map((item) => (
-          <ListingCard key = {item.id} item = {item} deleteById={deleteById}/>
+          <ListingCard key = {item.id} item = {item} deleteById={deleteById} handleClick={handleClick}/>
         ))}
         
       </ul>

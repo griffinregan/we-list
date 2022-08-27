@@ -8,15 +8,7 @@ import ListingsContainer from "./ListingContainer"
 import ListingsForm from './ListingsForm';
 import ListingDetails from './ListingDetails';
 
-const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchInput, setSearchInput, searchItems }) => {
-
-  const [cart, setCart] = useState([]);
-
-  const handleClick = (item) => {
-    if (cart.indexOf(item) !== -1) return;
-    setCart([...cart, item]);
-  };
-
+const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchInput, setSearchInput, searchItems, handleClick }) => {
 
   function deleteById(id) {
     const filteredListings = listings.filter(listing => listing.id !== id)
@@ -24,20 +16,20 @@ const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchIn
   }
 
 
-  const handleChange = (item, d) => {
-    const ind = cart.indexOf(item);
-    const arr = cart;
-    arr[ind].amount += d;
+//   const handleChange = (item, d) => {
+//     const ind = cart.indexOf(item);
+//     const arr = cart;
+//     arr[ind].amount += d;
 
-    if (arr[ind].amount === 0) arr[ind].amount = 1;
-    setCart([...arr]);
-  };
+//     if (arr[ind].amount === 0) arr[ind].amount = 1;
+//     setCart([...arr]);
+//   };
 
 
     return (
       <div>
         <Search searchItems={searchItems} searchInput={searchInput}/>
-        <ListingsContainer listings={listings} deleteById={deleteById}/>
+        <ListingsContainer listings={listings} deleteById={deleteById} handleClick={handleClick}/>
       </div>
     )
   }
