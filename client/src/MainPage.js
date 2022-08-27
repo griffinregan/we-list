@@ -23,9 +23,6 @@ const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchIn
     setListings(filteredListings)
   }
 
-  function searchItems(type) {
-    setSearchInput(type)
-  }
 
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
@@ -36,7 +33,6 @@ const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchIn
     setCart([...arr]);
   };
 
-  const displayedListings = listings.filter(listing => listing.description.toLowerCase().includes(searchInput.toLowerCase()))
 
     return (
       <div>
