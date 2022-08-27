@@ -8,7 +8,7 @@ import ListingsContainer from "./ListingContainer"
 import ListingsForm from './ListingsForm';
 import ListingDetails from './ListingDetails';
 
-const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchInput, setSearchInput }) => {
+const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchInput, setSearchInput, searchItems }) => {
 
   const [cart, setCart] = useState([]);
 
@@ -36,7 +36,7 @@ const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchIn
 
     return (
       <div>
-        <Search />
+        <Search searchItems={searchItems} searchInput={searchInput}/>
         <ListingsContainer listings={listings} deleteById={deleteById}/>
       </div>
     )

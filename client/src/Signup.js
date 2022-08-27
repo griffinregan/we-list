@@ -68,7 +68,7 @@ return(
             </form>
         </ul>
         <button className="signup-btn"
-            onClick={() => handleSubmit(formData)}>
+            onClick={handleSubmit}>
             Sign Up
         </button>
     </div>

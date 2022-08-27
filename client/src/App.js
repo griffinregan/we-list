@@ -74,6 +74,7 @@ function App() {
                 listings={listings}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
+                searchItems={searchItems}
               /> 
               : 
               <PageLogin 
