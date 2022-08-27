@@ -1,12 +1,20 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
 
-function Header({searchItems, searchInput, setShow, size}) {
+function Header({searchItems, searchInput, setShow, size, setCurrentUser}) {
+
+  const logout = () => {
+    fetch("/logout", {
+      method: "DELETE"
+    })
+    .then(setCurrentUser(null))
+  }
+
     return(
       <header className="headerbackground"> 
         <nav>
           <div className="navbar">
-            <NavLink exact className="button" to="/login">
+            <NavLink exact className="button" to="/">
               Home
             </NavLink>
             <NavLink exact className="button" to="/listings">
@@ -15,8 +23,8 @@ function Header({searchItems, searchInput, setShow, size}) {
             <NavLink exact className="button" to="/listings/new">
               Sell
             </NavLink>
-            <NavLink exact className="button" to="/">
-              User Login
+            <NavLink exact className="button" onClick={logout} to="/">
+              Logout
             </NavLink>
         <span className="my_shop" onClick={() => setShow(true)}>
           WeList

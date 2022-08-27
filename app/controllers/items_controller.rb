@@ -1,30 +1,29 @@
 class ItemsController < ApplicationController
- 
     def index 
         render json: Item.all 
     end
-
+    
     def show
         item = Item.find_by(id: params[:id])
         if item
-         render json: item
+            render json: item
         else
-         render_not_found_response
+            render_not_found_response
         end
     end
-
+    
     def create 
         item = Item.create(item_params)
         render json: item.item, status: :created
     end 
-
+    
     def update
         item = Item.find_by(id: params[:id])
         if item
-         item.update(item_params)
-         render json: item
+            item.update(item_params)
+            render json: item
         else
-         render_not_found_response
+            render_not_found_response
         end
        end
 

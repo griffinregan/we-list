@@ -3,15 +3,15 @@ import Login from "./Login";
 import Signup from "./Signup";
 import LoginHeader from "./LoginHeader";
 
-function PageLogin({ setCurrentEmail }) {
+function PageLogin({ setCurrentUser }) {
     const [showLogin, setShowLogin] = useState(true)
 
     return (
         <div id="login-cont">
-            {/* <LoginHeader />
+            <LoginHeader />
             {showLogin ? (
                 <>
-                <Login setCurrentEmail={setCurrentEmail} />
+                <Login setCurrentUser={setCurrentUser} />
                 <p id="p1">
                     Don't have an account?
                     <button
@@ -21,7 +21,7 @@ function PageLogin({ setCurrentEmail }) {
                 </>
             ) : (
                 <>
-                <Signup setCurrentEmail={setCurrentEmail} />
+                <Signup setCurrentUser />
                 <p id="p2">
                     Already have an account?
                     <button id="b2" onClick={() => setShowLogin(true)}>
@@ -30,7 +30,7 @@ function PageLogin({ setCurrentEmail }) {
                 </p>
                 </>
              ) 
-            } */}
+            }
         </div>
     )
 }

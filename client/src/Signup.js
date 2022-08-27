@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 
-function Signup ({setCurrentEmail}){
+function Signup ({setCurrentUser}){
     const [formData,setFormData]= useState({
-        username: "",
+        name: "",
         password: "",
     })
  
     const[error,setErrors]=useState([])
  
  console.log("error", error)
- const handleChange= (e)=> {
+ const handleChange =(e)=> {
+    console.log("name", e.target.name)
+    console.log("value", e.target.value)
+
      setFormData({
          ...formData,
          [e.target.name]: e.target.value
@@ -26,9 +29,9 @@ function Signup ({setCurrentEmail}){
          body: JSON.stringify(formData),
      }).then((res)=>{
          if(res.ok){
-             res.json().then((email)=>{
-                 console.log(email)
-                 setCurrentEmail(email)
+             res.json().then((user)=>{
+                 console.log(user)
+                 setCurrentUser(user)
              });
          }else{
              res.json().then((errors)=>{
@@ -40,38 +43,36 @@ function Signup ({setCurrentEmail}){
  }
      
  
-     return(
-         <div>
-         d="login"
+return(
+    <div id="login">
         <ul>
             <form>
-            <label>Signup
-            <input 
-            type="text" 
-            name="email"
-            placeholder="email"
-            value={formData.email} 
-            onChange={handleChange} 
-            />
-            </label>
-            <label>Password
-            <input 
-            type="text" 
-            name="password"
-            placeholder="password"
-            value={formData.password} 
-            onChange={handleChange} 
-            />
-            </label>
+                <label>Signup
+                    <input 
+                        type="text" 
+                        name="name"
+                        placeholder="username"
+                        value={formData.user} 
+                        onChange={handleChange} 
+                    />
+                </label>
+                <label>Password
+                    <input 
+                        type="text" 
+                        name="password"
+                        placeholder="password"
+                        value={formData.password} 
+                        onChange={handleChange} 
+                    />
+                </label>
             </form>
         </ul>
-        <button>
-            className="signup-btn"
-            onClick={() => handleSubmit(formData)}
+        <button className="signup-btn"
+            onClick={() => handleSubmit(formData)}>
             Sign Up
         </button>
-        </div>
-     )
- }
+    </div>
+    )
+}
 
 export default Signup;
