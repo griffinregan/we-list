@@ -37,7 +37,7 @@ const MainPage = ({ currentUser, setCurrentUser, listings, setListings, searchIn
     return (
       <div>
         <Search />
-        <ListingsContainer listings={displayedListings} deleteById={deleteById}/>
+        <ListingsContainer listings={listings} deleteById={deleteById}/>
       </div>
     )
   }

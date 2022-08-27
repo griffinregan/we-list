@@ -55,6 +55,10 @@ function App() {
   setCart([...arr]);
   };
 
+  function onAddItem(newItem){
+    return setListings([...listings, newItem]);
+  };
+
   return (
   <Router>
     <div className="App">
@@ -78,7 +82,7 @@ function App() {
             }
         </Route>
         <Route exact path="/listings/new">
-            <ListingsForm setListings={setListings} />
+            <ListingsForm setListings={setListings}  onAddItem={onAddItem}/>
         </Route>
         <Route exact path="/cart">
             <Cart cart={cart} setCart={setCart} handleChange={handleChange} handleClick={handleClick}/>
