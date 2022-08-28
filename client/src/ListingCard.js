@@ -17,8 +17,8 @@ function handleDelete(id) {
         <img src={item.image} alt={"description"} />
       </div>
       <div className="details">
-        <strong>{item.name}</strong>
-        <strong>{item.description}</strong>
+        <strong><p>{item.name}</p></strong>
+        <strong><p>{item.description}</p></strong>
         <span>{item.location}</span>
         <button onClick={() => handleClick(item)} className="emoji-button cart">Add to 🛒</button>
       </div>
