@@ -25,13 +25,23 @@ class ItemsController < ApplicationController
         else
             render_not_found_response
         end
-       end
+    end
 
     def destroy
         item = Item.find(params[:id])
         item.destroy
         head :no_content
     end 
+
+    def my_items 
+        items = Item.where(user_id: session[:user_id])
+
+        if items
+            render json: items
+        else 
+            render_user_not_found_response
+        end
+    end
 
     private
     def item_params
@@ -41,6 +51,10 @@ class ItemsController < ApplicationController
 
     def render_not_found_response
         render json: { error: 'Item not found' }, status: :not_found
+    end 
+
+    def render_user_not_found_response
+        render json: { error: 'User not found' }, status: :not_found
     end 
 
 end

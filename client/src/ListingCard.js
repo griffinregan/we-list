@@ -13,11 +13,11 @@ function handleDelete(id) {
   return (
     <li className="card">
       <div className="image">
-        <span className="price">$0</span>
+        <span className="price">${item.price}</span>
         <img src={item.image} alt={"description"} />
       </div>
       <div className="details">
-    
+        <strong>{item.name}</strong>
         <strong>{item.description}</strong>
         <span>{item.location}</span>
         <button onClick={() => handleClick(item)} className="emoji-button cart">Add to 🛒</button>
