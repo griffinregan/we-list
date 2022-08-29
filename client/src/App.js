@@ -70,7 +70,7 @@ function App() {
   
   return (
     <Router>
-      <div className="App">
+      <div className="">
         {currentUser && (
           <Header setCurrentUser={setCurrentUser} size={cart.length} />
         )}

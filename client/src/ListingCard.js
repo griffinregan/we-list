@@ -1,14 +1,14 @@
 import React from "react";
 
-function ListingCard({item, deleteById, handleClick}) {
+function ListingCard({ item, deleteById, handleClick }) {
 
 
-function handleDelete(id) {
-  fetch ("http://localhost:6001/listings/" + id, {
-    method: "DELETE"
-  })
-  deleteById(id)
-}
+  function handleDelete(id) {
+    fetch("http://localhost:6001/listings/" + id, {
+      method: "DELETE"
+    })
+    deleteById(id)
+  }
 
   return (
     <li className="card">
@@ -17,10 +17,13 @@ function handleDelete(id) {
         <img src={item.image} alt={"description"} />
       </div>
       <div className="details">
-        <strong><p>{item.name}</p></strong>
-        <strong><p>{item.description}</p></strong>
+        <h3>{item.name}</h3>
+        <p>{item.description}</p>
         <span>{item.location}</span>
-        <button onClick={() => handleClick(item)} className="emoji-button cart">Add to 🛒</button>
+        <div style={{display:"flex",justifyContent:"center",marginTop:10}}>
+
+          <button onClick={() => handleClick(item)} className="emoji-button cart" style={{ backgroundColor: "lightblue", color: "white", width: "40%", padding: 10, borderRadius: 5 }}>Add to 🛒</button>
+        </div>
       </div>
     </li>
   );
