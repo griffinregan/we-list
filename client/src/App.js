@@ -46,6 +46,10 @@ function App() {
     setCart([...cart, item]);
   };
 
+  const handleAddListing = (listing) => {
+    setListings([...listings, listing])
+  }
+
   function deleteById(id) {
     const filteredListings = listings.filter((listing) => listing.id !== id);
     setListings(filteredListings);
@@ -63,11 +67,7 @@ function App() {
     if (arr[ind].amount === 0) arr[ind].amount = 1;
     setCart([...arr]);
   };
-
-  function onAddItem(newItem) {
-    return setListings([...listings, newItem]);
-  }
-
+  
   return (
     <Router>
       <div className="App">
@@ -95,7 +95,7 @@ function App() {
             )}
           </Route>
           <Route exact path="/listings/new">
-            <ListingsForm setListings={setListings} onAddItem={onAddItem} />
+            <ListingsForm component={ListingsForm} handleAddListing={handleAddListing}/>
           </Route>
           <Route exact path="/cart">
             <Cart

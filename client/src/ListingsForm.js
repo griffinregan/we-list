@@ -1,72 +1,77 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function ListingsForm({ onAddItem}) {
-    const [formState, setFormState] = useState({
-        name: "",
-        price: "",
-        image: "",
-        description: ""
+function ListingsForm({ handleAddListing }) {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const item = { name: name, price: price, image: image, description: description };
+
+    fetch("/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+      })
+      .then(res => res.json())
+      .then((data) => {
+        console.log("new item added");
+        handleAddListing(data)
       });
+  };
 
-    function handleChange(event){
-        setFormState((prevFormState) => {
-            return {
-                ...prevFormState,
-                [event.target.name]: event.target.value,
-            };
-        });
-    }
-    function handleSubmit(e){
-        e.preventDefault();
-        fetch ("http://localhost:3000/items", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            },
-            body: JSON.stringify({...formState}),
-        })
-        .then (res => res.json())
-        .then((newItem) => {onAddItem(newItem); 
-                setFormState ({
-                    name: "",
-                    price: "",
-                    image: "",
-                    description: ""
-                });
-                });
-            
-    };
-
-
-    return(
-        <div className="additem">
-            <form onSubmit={handleSubmit} autoComplete="off" className="addlistings">
-                    <h2 className="h2Form">Add a New Listing </h2>
-
-                    <div className="formitem">                
-                        <input onChange={handleChange} type="text" id="yourname" placeholder="Name of listing..." style={{height:25, width:250}} name="title" value={formState.name}/>
-                    </div>
-
-                    <div className="formitem">                
-                        <input type="text" id="name" placeholder="Price..." name="poster" style={{height:25, width:250}} value={formState.price} onChange={handleChange}/>
-                    </div>
-
-                    <div className="formitem">                        
-                        <input type="text" id="image" placeholder="Image..." style={{height:25, width:250}} name="releaseYear" value={formState.image} onChange={handleChange}/>
-                    </div>
-
-                    <div className="formitem">                        
-                        <textarea id="review" name="summary" placeholder="Description.." style={{height:40, width: 250}} value={formState.description} onChange={handleChange}></textarea>
-                    </div>
-                
-
-                    <div className="formitem">
-                        <button type="submit">Submit</button> 
-                    </div>   
-                </form>
+  return (
+    <div className="group">
+      <form className="form-group" onSubmit={handleSubmit}>
+        <h2> Create Item Form </h2>
+        <div className="form">
+          <label>Name </label>
+          <input
+            type="text"
+            required
+            value={name}
+            style={{ height: 25, width: 250 }}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
-    );
-
+        <div className="form">
+          <label>Price </label>
+          <input
+            type="text"
+            required
+            value={price}
+            style={{ height: 25, width: 250 }}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="form">
+          <label>Image </label>
+          <input
+            type="text"
+            required
+            value={image}
+            style={{ height: 25, width: 250 }}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+        <div className="form">
+          <label>Description </label>
+          <textarea
+            required
+            value={description}
+            style={{ height: 40, width: 250 }}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+        </div>
+        <button type="submit" onClick={handleSubmit} className="btn-primary">
+          {" "}
+          Add Item!{" "}
+        </button>
+      </form>
+    </div>
+  );
 }
+
 export default ListingsForm;

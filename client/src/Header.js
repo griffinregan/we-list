@@ -13,11 +13,11 @@ function Header({ searchItems, searchInput, setShow, size, setCurrentUser }) {
       <nav>
         <div className="navbar">
           <NavLink exact className="button" to="/">
-            Home
+            WeList
           </NavLink>
-          <NavLink exact className="button" to="/listings">
+          {/* <NavLink exact className="button" to="/listings">
             Shop
-          </NavLink>
+          </NavLink> */}
           <NavLink exact className="button" to="/listings/new">
             Sell
           </NavLink>
@@ -33,9 +33,6 @@ function Header({ searchItems, searchInput, setShow, size, setCurrentUser }) {
           <NavLink exact className="button" onClick={logout} to="/">
             Logout
           </NavLink>
-          <span className="my_shop" onClick={() => setShow(true)}>
-            WeList
-          </span>
           {/* <div className="cart" onClick={() => setShow(false)}>
           <span>
             <i class="fas-fa-cart-plus"></i>

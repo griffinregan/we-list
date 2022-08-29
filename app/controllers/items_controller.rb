@@ -13,8 +13,13 @@ class ItemsController < ApplicationController
     end
     
     def create 
-        item = Item.create(item_params)
-        render json: item.item, status: :created
+        item = Item.new(item_params)
+        item.user_id = session[:user_id]
+        if item.save 
+            render json: item, status: :created
+        else
+            render json: {errors: item.errors}, status: :unprocessable_entity
+        end
     end 
     
     def update

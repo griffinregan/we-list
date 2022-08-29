@@ -11,7 +11,7 @@ function Search({searchItems, searchInput}) {
       <input
         type="text"
         id="search"
-        placeholder="search free stuff"
+        placeholder="Search"
         value={searchInput}
         onChange={(e) => searchItems(e.target.value)}
       />
